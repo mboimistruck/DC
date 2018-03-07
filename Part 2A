@@ -1,0 +1,21 @@
+  """PROG 1331 Test 1 Tue March 6, 2018 - Task B-2 (Version A)
+Program to show how to concatenate strings into a phrase.
+
+This program was broken by introducing two problems.
+For full marks:
+ 1) determine what the problems were; 
+ 2) explain why they were a problem,
+ 3) and make the corrections.
+
+Test:
+Please enter your name: Fred
+Please enter a colour that you like: blue
+Fred likes the colour blue.
+"""
+
+name = input("Please enter your name: ")
+colour = input("Please enter a colour that you like: ")
+greet = name + " likes the colour "+ colour + "."
+print(greet)
+
+# end of program
