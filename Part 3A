@@ -1,0 +1,104 @@
+"""PROG 1331 Test 1 Tue 2018-03-06 Resistor class (B-3 Version A).
+
+Task: troubleshoot the class definition and the methods of class Resistor.
+Answer on the test paper (Identify the errors; explain why they are errors;
+describe how to fix the errors), then correct the file.
+
+If you want more verbose error messages, set the variable
+    detailed=True
+in the line after the start of the __main__ section.
+"""
+
+class Resistor(object):
+    """Model a resistor according to Ohm's Law."""
+    def __init__(self, resistance, tolerance):
+        """Constructor."""
+        self.resistance = resistance
+        self.tolerance = tolerance
+        # Set reasonable initial values for voltage and current
+        self.voltage = 0.0
+        self.current = 0.0
+        return
+
+    def __str__(self):
+        """Return a string representing the Resistor."""
+        return str(self.resistance) + "ohms " + str(self.tolerance) + "%"
+
+    def set_voltage(self, voltage):
+        """Set the voltage, recalculate the current."""
+        self.voltage = voltage
+        self.current = self.voltage / self.resistance
+        return
+
+    def set_current(self, current):
+        """Set the current, recalculate the voltage."""
+        self.current = current
+        self.voltage = self.current * self.resistance
+        return
+
+    def __add__(self, other):
+        """Return a new Resistor that is equivalent to the series combination
+        of two resistors.
+
+        The equivalent resistance is the series combination of self and other,
+        The tolerance is "guess"-timated as the larger of the two.
+        """
+        combined = self.resistance + other.resistance
+        tolerance = max(self.tolerance, other.tolerance)
+        return Resistor(combined, tolerance)
+
+
+if __name__ == "__main__":
+    detailed = False  # Set this to True to enable verbose output
+    # Test scripts for each method (do not alter!)
+    __test__ = {"Resistor":
+                """
+                >>> r1 = Resistor(1000, 5)
+                >>> r1.resistance
+                1000
+                >>> r1.tolerance
+                5
+                >>> r1.voltage
+                0.0
+                >>> r1.current
+                0.0
+                """,
+                "Resistor.__str__":
+                """
+                >>> r1 = Resistor(1000, 5)
+                >>> print(r1)
+                1000ohms 5%
+                """,
+                "Resistor.set_voltage":
+                """
+                >>> r1 = Resistor(1000, 5)
+                >>> r1.set_voltage(3.3)
+                >>> r1.voltage
+                3.3
+                >>> r1.current
+                0.0033
+                """,
+                "Resistor.set_current":
+                """
+                >>> r1 = Resistor(1000, 5)
+                >>> r1.set_current(0.015)
+                >>> r1.current
+                0.015
+                >>> r1.voltage
+                15.0
+                """,
+                "Resistor.__add__":
+                """
+                >>> r1 = Resistor(1000, 5)
+                >>> r2 = Resistor(2200, 2)
+                >>> r3 = r1 + r2
+                >>> print(r3)
+                3200ohms 5%
+                """
+                }
+    # doctest module import and run
+    import doctest
+    fails, tests = doctest.testmod(verbose=detailed, exclude_empty=True)
+    if fails == 0 and not detailed:
+        print(tests, "tests passed, no errors.")
+
