@@ -1,0 +1,40 @@
+"""PROG 1331 Test 1 Task B-1 Tue March 6, 2018. (Version B)
+
+Define a function format_url() that takes a list of three strings
+representing user name and domain name and returns a string containing
+a URL for that user's personal web space on the server. The personal 
+web space is formed with a ~ tilde character in front of the user name.
+For example:
+["flintstonef", "example.ca"]
+becomes
+"http://example.ca/~flintstonef"
+
+If the function receives less than 2 strings in the list, it should return
+an empty string "".
+
+The main program that calls the doctest module is already given below,
+you must define the function. Do not edit the docstring, it gives the
+script for the doctest module.
+"""
+
+def format_url(words):
+    """Return a personal URL formatted as "http://<domain>/~<username>".
+    ### DO NOT EDIT THE DOCSTRING. IT GIVES THE AUTOMATIC TESTING SCRIPT.
+    >>> word_list = ["flintstonef", "example.ca"]
+    >>> format_url(word_list)
+    'http://example.ca/~flintstonef'
+    >>> short_list = ["example.ca"]
+    >>> format_url(short_list)
+    ''
+    """
+    return print("''") if (len(words) < 2) else print("'http://"+words[1]+"/~"+words[0]+"'")
+    
+
+
+if __name__ == "__main__":
+    print("""If the function works as expected,
+there will be no error output below this line.""")
+    import doctest
+    doctest.testmod()
+
+
