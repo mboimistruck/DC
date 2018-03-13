@@ -1,40 +1,42 @@
-"""PROG 1331 Test 1 Task B-1 Tue March 6, 2018. (Version B)
+"""PROG 1331 Test 1 Task B-1 Tue March 6, 2018. (Version A)
 
-Define a function format_url() that takes a list of three strings
-representing user name and domain name and returns a string containing
-a URL for that user's personal web space on the server. The personal 
-web space is formed with a ~ tilde character in front of the user name.
+Define a function
+    format_userid(words)
+that takes a list of two strings representing first and last name, and returns
+a string containing a typically formatted user ID made from the last name
+concatenated with the first name initial, all lowercase.
 For example:
-["flintstonef", "example.ca"]
+["Fred", "Bloggs"]
 becomes
-"http://example.ca/~flintstonef"
+"bloggsf"
 
-If the function receives less than 2 strings in the list, it should return
-an empty string "".
+If the function receives less than 2 strings in the list, it should return an
+empty string "".
 
 The main program that calls the doctest module is already given below,
 you must define the function. Do not edit the docstring, it gives the
 script for the doctest module.
 """
 
-def format_url(words):
-    """Return a personal URL formatted as "http://<domain>/~<username>".
+def format_userid(words):
+    """Return a user ID formatted as last + first initial.
     ### DO NOT EDIT THE DOCSTRING. IT GIVES THE AUTOMATIC TESTING SCRIPT.
-    >>> word_list = ["flintstonef", "example.ca"]
-    >>> format_url(word_list)
-    'http://example.ca/~flintstonef'
-    >>> short_list = ["example.ca"]
-    >>> format_url(short_list)
+    >>> format_userid(["Fred", "Bloggs"])
+    'bloggsf'
+    >>> format_userid(["Fred"])
     ''
     """
-    return print("''") if (len(words.split()) < 2) else print("'http://"+words[1]+"/~"+words[0]+"'")
-    
+    # PLEASE DEFINE YOUR FUNCTION HERE
 
+    return print("'"+words[1].lower() + words[0][0].lower()+"'") if (len(words) >= 2) else print("''")
+
+    #above strictly converts input into lowercase and creates an array of each word
+    #seperated by spaces. It then takes the second ([1]) word in the array (last name)
+    #and then adds the first letter of the first word in the array to the end
+    #of the first.
 
 if __name__ == "__main__":
     print("""If the function works as expected,
 there will be no error output below this line.""")
     import doctest
     doctest.testmod()
-
-
