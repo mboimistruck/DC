@@ -27,7 +27,7 @@ def format_url(words):
     >>> format_url(short_list)
     ''
     """
-    return print("''") if (len(words) < 2) else print("'http://"+words[1]+"/~"+words[0]+"'")
+    return print("''") if (len(words.split()) < 2) else print("'http://"+words[1]+"/~"+words[0]+"'")
     
 
 
